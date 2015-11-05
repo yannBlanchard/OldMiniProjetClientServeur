@@ -16,7 +16,7 @@ public class Main {
         String mess;
 
         FenetreClient client = new FenetreClient();
-
+        //FenetreServ serv = new FenetreServ();
         BufferedReader in;
 	// write your code here
 
@@ -24,12 +24,13 @@ public class Main {
 
 
         //
-        in = new BufferedReader( new InputStreamReader(System.in));
+        //in = new BufferedReader( new InputStreamReader(System.in));
         //Socket clientSocket = new Socket("127.0.0.1",1234);
-
+        //String messBase = client.getText();
         while (true){
-           // mess = ta.getText();
-           // System.out.println(mess);
+
+            //mess = client.getText();
+            //System.out.println(mess);
         }
     }
 }
