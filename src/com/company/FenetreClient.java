@@ -12,12 +12,16 @@ import java.awt.event.ActionListener;
 public class FenetreClient extends JFrame implements ActionListener{
     TextArea reception;
     TextArea message;
+    String mes;
     JButton send;
-    public FenetreClient() {
+    String nomClient;
+    Boolean firstCommit;
+    public FenetreClient(String nomClient) {
+        this.nomClient = nomClient;
         JFrame f = new JFrame();
         f.setSize(500, 500);
         f.setTitle("Tchat");
-
+        firstCommit = true;
 
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -39,12 +43,7 @@ public class FenetreClient extends JFrame implements ActionListener{
         send.addActionListener(this);
     }
 
-    /*public String getText(){
-        return this.ta.getText();
-    }
-    public void update(){
-        tf.setVisible(true);
-    }*/
+
 
     public void actionPerformed(ActionEvent e)
     {
@@ -53,11 +52,24 @@ public class FenetreClient extends JFrame implements ActionListener{
 
         if (label.equals("Envoyer"))
         {
-            //envoyer();
-            System.out.println(message.getText());
-            reception.setText(reception.getText()+"Yann"+"  :\n"+message.getText()+"\n");
+            reception.setText(reception.getText() + nomClient + "  :\n" + message.getText() + "\n");
+            System.out.print(mes);
+            //On efface l'ecran
             message.setText(null);
+            //On remet le focus sur le champs de saisie
             message.requestFocusInWindow();
+
+            System.out.println(message.getText());
+            if(firstCommit == true){
+                mes = ":S:1:" + message.getText();
+            }
+            else {
+
+
+            }
+
+            //Envoie envoieToServ = new Envoie(;
+
             //System.out.println(connec.mote);
 
 
