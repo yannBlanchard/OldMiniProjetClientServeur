@@ -1,0 +1,37 @@
+Trace 1 :
+
+Client Paul : Demarrage Client
+Client Alexandra : Demarrage Client
+Serveur Principal : 0 Demarrage Serveur
+Client Paul : Envoie Mess
+Client Alexandra : Envoie Mess
+Serveur Principal : 1 reçu : :S:Paul:
+Serveur Principal : 2 Demande abonnement de -->Paul
+Serveur Principal : 3 reçu : :S:Alexandra:
+Serveur Principal : 4 Demande abonnement de -->Alexandra
+Serveur local pour Paul Demarrage d'un serveur pour servir Paul
+Serveur local pour Paul Reçu : :D:Paul:tata:HELLO:
+Serveur local pour Alexandra Demarrage d'un serveur pour servir Alexandra
+Serveur local pour Alexandra Reçu : :D:Alexandra:tata:HELLO:
+Destinataire Inconnu
+Destinataire Inconnu
+Client Alexandra : Recu du serveur Destinataire Inconnu
+Client Paul : Recu du serveur Destinataire Inconnu
+
+
+Trace 2 : 
+
+Client Paul : Demarrage Client
+Client Alexandra : Demarrage Client
+Serveur Principal : 0 Demarrage Serveur
+Client Alexandra : Envoie Mess
+Client Paul : Envoie Mess
+Serveur Principal : 1 reçu : :S:Paul:
+Serveur Principal : 2 Demande abonnement de -->Paul
+Serveur Principal : 3 reçu : :S:Alexandra:
+Serveur local pour Paul Demarrage d'un serveur pour servir Paul
+Serveur Principal : 4 Demande abonnement de -->Alexandra
+Serveur local pour Paul Reçu : :D:Paul:Paul:HELLO:
+Serveur local pour Alexandra Demarrage d'un serveur pour servir Alexandra
+Serveur local pour Alexandra Reçu : :D:Alexandra:Paul:HELLO:
+Client Paul : Recu du serveur Message de Paul "HELLO"
