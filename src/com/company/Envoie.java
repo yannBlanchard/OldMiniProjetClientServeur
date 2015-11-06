@@ -28,7 +28,6 @@ public class Envoie extends Thread {
 
                 while (true){
                     messageToServer = (String) myPc.Get();
-                    System.out.println("Client envoie : " + messageToServer);
                     outToServer.writeBytes(messageToServer + ":" + '\n');
                 }
             }

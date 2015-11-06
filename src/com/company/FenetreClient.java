@@ -16,16 +16,26 @@ public class FenetreClient extends JFrame implements ActionListener{
     JButton send;
     String nomClient;
     Boolean firstCommit;
-    ProdCons myPc = null;
-    public FenetreClient(String nomClient,ProdCons prodCons) {
-        this.nomClient = nomClient;
-        this.myPc = prodCons;
+    ProdCons myPcEnvoie = null;
+    ProdCons myPcRecept = null;
 
+    public void waitMessage(){
+        String messReception;
+
+        messReception = (String) myPcRecept.Get();
+        System.out.println("Recu :" + messReception);
+        reception.setText(reception.getText() + messReception);
+    }
+
+    public FenetreClient(String nomClient,ProdCons prodConsEnv,ProdCons prodConsRec) {
+        this.nomClient = nomClient;
+        this.myPcEnvoie = prodConsEnv;
+        this.myPcRecept = prodConsRec;
 
 
         JFrame f = new JFrame();
         f.setSize(500, 500);
-        f.setTitle("Tchat ("+ nomClient + ")" );
+        f.setTitle("Tchat (" + nomClient + ")");
         firstCommit = false;
 
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -35,6 +45,8 @@ public class FenetreClient extends JFrame implements ActionListener{
         reception = new TextArea(20,40);
         message = new TextArea(10,40);
         send = new JButton("Envoyer");
+
+        reception.setText("Syntaxe : \n NomDestinataire:Message\n");
 
         reception.setEditable(false);
         f.add(reception);
@@ -46,6 +58,7 @@ public class FenetreClient extends JFrame implements ActionListener{
         f.setVisible(true);
 
         send.addActionListener(this);
+
     }
 
 
@@ -60,8 +73,8 @@ public class FenetreClient extends JFrame implements ActionListener{
             //On affiche le message dans la zone de reception
             reception.setText(reception.getText() + nomClient + "  :\n" + message.getText() + "\n");
             //On construit le message
-            mes = ":D:Bob:"+ nomClient +":" + message.getText();
-            myPc.Put(mes);
+            mes = ":D:" +nomClient +":" + message.getText();
+            myPcEnvoie.Put(mes);
             //On efface l'ecran
             message.setText(null);
             //On remet le focus sur le champs de saisie

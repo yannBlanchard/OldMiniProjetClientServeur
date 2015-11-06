@@ -20,14 +20,15 @@ public class Client extends Thread {
 
     public void run(){
 
-        ProdCons pc = new ProdCons(512);
-        FenetreClient client = new FenetreClient(nom,pc);
+        ProdCons pcEnvoie = new ProdCons(512);
+        ProdCons pcRecept = new ProdCons(512);
+        FenetreClient client = new FenetreClient(nom,pcEnvoie,pcRecept);
         //BufferedReader in;
 
         try {
             Socket clientSocket = new Socket("127.0.0.1", 14586);
-            Envoie env = new Envoie(clientSocket,nom,pc);
-            Reception recept = new Reception(clientSocket);
+            Envoie env = new Envoie(clientSocket,nom,pcEnvoie);
+            Reception recept = new Reception(clientSocket,pcRecept);
 
 
             recept.start();
@@ -38,7 +39,8 @@ public class Client extends Thread {
         }
 
         while (true){
-
+            System.out.println("ok");
+            client.waitMessage();
             //mess = client.getText();
             //System.out.println(mess);
         }

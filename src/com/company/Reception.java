@@ -13,11 +13,14 @@ public class Reception extends Thread {
     Socket socket;
     Boolean firstCommit;
     String nom;
-    String modifiedSentence;
+    String messageRecu;
     BufferedReader inFromServer;
 
-    public Reception(Socket s) {
+    ProdCons myPcRecept = null;
+
+    public Reception(Socket s,ProdCons pc) {
         this.socket = s;
+        this.myPcRecept = pc;
     }
     public void run(){
         try {
@@ -25,7 +28,10 @@ public class Reception extends Thread {
         } catch (Exception e) {}
         while (true) {
             try {
-                modifiedSentence = inFromServer.readLine();
+                System.out.println("Attente de message");
+                messageRecu = inFromServer.readLine();
+                System.out.println("Message recu : " + messageRecu);
+                myPcRecept.Put(messageRecu);
             }
             catch (Exception e){}
         }
