@@ -8,27 +8,32 @@ import java.net.*;
  * Created by yablanch on 06/11/2015.
  */
 public class Envoie extends Thread {
-    Socket socket;
-    Boolean firstCommit;
-    String nom;
-    public Envoie(Socket s,String nom){
-        this.socket = s;
-        this.nom = nom;
-
-
-    }
-    public void run(){
-        firstCommit = true;
-        try {
-            DataOutputStream outToServer = new DataOutputStream(socket.getOutputStream());
-            //Demande d'abo
-            outToServer.writeBytes(":S:"+ nom + ":" + '\n');
+        Socket socket;
+        Boolean firstCommit;
+        String nom;
+        ProdCons myPc = null;
+        String messageToServer;
+        public Envoie(Socket s,String nom,ProdCons prodCons){
+            this.socket = s;
+            this.nom = nom;
+            this.myPc = prodCons;
         }
-        catch (Exception e){
+        public void run(){
+            //FenetreClient client = new FenetreClient(nom);
+            firstCommit = true;
+            try {
+                DataOutputStream outToServer = new DataOutputStream(socket.getOutputStream());
+                //Demande d'abo
+                outToServer.writeBytes(":S:"+ nom + ":" + '\n');
 
-        }
-        while (true){
+                while (true){
+                    messageToServer = (String) myPc.Get();
+                    System.out.println("Client envoie : " + messageToServer);
+                    outToServer.writeBytes(messageToServer + ":" + '\n');
+                }
+            }
+            catch (Exception e){
 
+            }
         }
-    }
 }

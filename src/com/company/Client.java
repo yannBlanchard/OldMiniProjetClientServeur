@@ -19,16 +19,17 @@ public class Client extends Thread {
     }
 
     public void run(){
-        FenetreClient client = new FenetreClient(nom);
 
+        ProdCons pc = new ProdCons(512);
+        FenetreClient client = new FenetreClient(nom,pc);
         //BufferedReader in;
-
-
 
         try {
             Socket clientSocket = new Socket("127.0.0.1", 14586);
-            Envoie env = new Envoie(clientSocket,nom);
+            Envoie env = new Envoie(clientSocket,nom,pc);
             Reception recept = new Reception(clientSocket);
+
+
             recept.start();
             env.start();
         }

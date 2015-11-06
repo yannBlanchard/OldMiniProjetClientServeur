@@ -16,12 +16,17 @@ public class FenetreClient extends JFrame implements ActionListener{
     JButton send;
     String nomClient;
     Boolean firstCommit;
-    public FenetreClient(String nomClient) {
+    ProdCons myPc = null;
+    public FenetreClient(String nomClient,ProdCons prodCons) {
         this.nomClient = nomClient;
+        this.myPc = prodCons;
+
+
+
         JFrame f = new JFrame();
         f.setSize(500, 500);
-        f.setTitle("Tchat");
-        firstCommit = true;
+        f.setTitle("Tchat ("+ nomClient + ")" );
+        firstCommit = false;
 
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -52,27 +57,15 @@ public class FenetreClient extends JFrame implements ActionListener{
 
         if (label.equals("Envoyer"))
         {
+            //On affiche le message dans la zone de reception
             reception.setText(reception.getText() + nomClient + "  :\n" + message.getText() + "\n");
-            System.out.print(mes);
+            //On construit le message
+            mes = ":D:Bob:"+ nomClient +":" + message.getText();
+            myPc.Put(mes);
             //On efface l'ecran
             message.setText(null);
             //On remet le focus sur le champs de saisie
             message.requestFocusInWindow();
-
-            System.out.println(message.getText());
-            if(firstCommit == true){
-                mes = ":S:1:" + message.getText();
-            }
-            else {
-
-
-            }
-
-            //Envoie envoieToServ = new Envoie(;
-
-            //System.out.println(connec.mote);
-
-
 
         }
 
