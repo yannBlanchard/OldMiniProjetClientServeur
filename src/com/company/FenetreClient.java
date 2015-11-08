@@ -17,7 +17,6 @@ public class FenetreClient extends JFrame implements ActionListener{
     JButton send;
     JLabel label;
     String nomClient;
-    Boolean firstCommit;
     ProdCons myPcEnvoie = null;
     ProdCons myPcRecept = null;
 
@@ -34,30 +33,25 @@ public class FenetreClient extends JFrame implements ActionListener{
         this.myPcEnvoie = prodConsEnv;
         this.myPcRecept = prodConsRec;
 
-
+        //Creation de la frame
         JFrame f = new JFrame();
         f.setSize(520, 600);
         f.setTitle("Tchat (" + nomClient + ")");
-        firstCommit = false;
-
+        //Ajout de la croix pour fermer
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        //f.setLayout(new FlowLayout());
-        f.setLayout(null);
-        //reception = new TextArea(20,40);
-       // message = new TextArea(10,40);
 
+        f.setLayout(null);
+        //Creation des elements
         label = new JLabel("Destinataire :");
         pseudo = new TextField();
         reception = new TextArea();
         message = new TextArea();
         send = new JButton("Envoyer");
 
-
-
-        //reception.setText("Syntaxe : \n NomDestinataire:Message\n");
-
+        //On bloque la modification de la reception
         reception.setEditable(false);
+        //On ajoute une scroll bar a la fenetre de reception
         JScrollPane scrollPane = new JScrollPane(reception);
         // On positionne les elements
         label.setBounds(1, 1, 99, 20);
@@ -74,9 +68,9 @@ public class FenetreClient extends JFrame implements ActionListener{
         f.add(message);
         f.add(send);
 
-
+        //On affiche la frame
         f.setVisible(true);
-
+        //On active l'ecout d'evenements sur le bouton
         send.addActionListener(this);
 
     }
