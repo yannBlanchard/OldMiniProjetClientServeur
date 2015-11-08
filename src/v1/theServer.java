@@ -22,7 +22,7 @@ public class theServer extends Thread {
 	}
 
 	private void traiteDemandeAbonnement(Socket clientSocket, String srec, BufferedReader clientSocketIn) throws IOException {
-		String nameClient = srec.substring(3, srec.length() - 1);
+		String nameClient = srec.substring(5, srec.length() - 1);
 		affTrace("Demande abonnement de -->" + nameClient);
 		PrintWriter outClient = new PrintWriter(clientSocket.getOutputStream(), true);
 
@@ -50,7 +50,7 @@ public class theServer extends Thread {
 				String srec = clientSocketIn.readLine();
 				affTrace("reçu : " + srec);
 
-				if (srec.startsWith(":S:")) {
+				if (srec.startsWith(":S:1:")) {
 					traiteDemandeAbonnement(clientSocket, srec, clientSocketIn);
 				} else {
 

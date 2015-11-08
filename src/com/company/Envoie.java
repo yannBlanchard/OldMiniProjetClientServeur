@@ -24,7 +24,7 @@ public class Envoie extends Thread {
             try {
                 DataOutputStream outToServer = new DataOutputStream(socket.getOutputStream());
                 //Demande d'abo
-                outToServer.writeBytes(":S:"+ nom + ":" + '\n');
+                outToServer.writeBytes(":S:1:"+ nom + ":" + '\n');
 
                 while (true){
                     messageToServer = (String) myPc.Get();
