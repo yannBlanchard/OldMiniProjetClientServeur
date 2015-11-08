@@ -42,25 +42,28 @@ public class FenetreClient extends JFrame implements ActionListener{
 
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        f.setLayout(new FlowLayout());
-
+        //f.setLayout(new FlowLayout());
+        f.setLayout(null);
         //reception = new TextArea(20,40);
        // message = new TextArea(10,40);
+
         label = new JLabel("Destinataire :");
         pseudo = new TextArea();
         reception = new TextArea();
         message = new TextArea();
         send = new JButton("Envoyer");
 
+
+
         reception.setText("Syntaxe : \n NomDestinataire:Message\n");
 
         reception.setEditable(false);
 
-        label.setBounds(1, 1, 10, 20);
-        pseudo.setBounds(1, 1, 10, 20);
-        reception.setBounds(1, 10, 490, 400);
-        message.setBounds(1, 310, 490, 50);
-        send.setBounds(1,510,10,50);
+        label.setBounds(1, 1, 99, 50);
+        pseudo.setBounds(100, 1, 399, 50);
+        reception.setBounds(1, 60, 499, 400);
+        message.setBounds(1, 470, 499, 50);
+        send.setBounds(200,520,100,25);
         f.add(label);
         f.add(pseudo);
         f.add(reception);
