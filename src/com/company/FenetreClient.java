@@ -55,7 +55,7 @@ public class FenetreClient extends JFrame implements ActionListener{
         // On positionne les elements
         label.setBounds(1, 1, 99, 20);
         pseudo.setBounds(100, 1, 70, 30);
-        reception.setBounds(1, 50, 499, 100);
+        reception.setBounds(1, 50, 499, 350);
         message.setBounds(1, 450, 499, 70);
         send.setBounds(200, 520, 100, 25);
         //Ajout des composant au panel
