@@ -12,7 +12,7 @@ import java.awt.event.ActionListener;
 public class FenetreClient extends JFrame implements ActionListener{
     TextArea reception;
     TextArea message;
-    TextArea pseudo;
+    TextField pseudo;
     String mes;
     JButton send;
     JLabel label;
@@ -36,7 +36,7 @@ public class FenetreClient extends JFrame implements ActionListener{
 
 
         JFrame f = new JFrame();
-        f.setSize(500, 600);
+        f.setSize(520, 600);
         f.setTitle("Tchat (" + nomClient + ")");
         firstCommit = false;
 
@@ -48,27 +48,30 @@ public class FenetreClient extends JFrame implements ActionListener{
        // message = new TextArea(10,40);
 
         label = new JLabel("Destinataire :");
-        pseudo = new TextArea();
+        pseudo = new TextField();
         reception = new TextArea();
         message = new TextArea();
         send = new JButton("Envoyer");
 
 
 
-        reception.setText("Syntaxe : \n NomDestinataire:Message\n");
+        //reception.setText("Syntaxe : \n NomDestinataire:Message\n");
 
         reception.setEditable(false);
-
-        label.setBounds(1, 1, 99, 50);
-        pseudo.setBounds(100, 1, 399, 50);
-        reception.setBounds(1, 60, 499, 400);
-        message.setBounds(1, 470, 499, 50);
+        JScrollPane scrollPane = new JScrollPane(reception);
+        // On positionne les elements
+        label.setBounds(1, 1, 99, 20);
+        pseudo.setBounds(100, 1, 70, 30);
+        reception.setBounds(1, 40, 499, 400);
+        message.setBounds(1, 450, 499, 70);
         send.setBounds(200,520,100,25);
+        //Ajout des composant au panel
+
         f.add(label);
         f.add(pseudo);
+        f.add(scrollPane);
         f.add(reception);
         f.add(message);
-
         f.add(send);
 
 
