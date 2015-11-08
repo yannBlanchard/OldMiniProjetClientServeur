@@ -28,6 +28,7 @@ public class Envoie extends Thread {
 
                 while (true){
                     messageToServer = (String) myPc.Get();
+
                     outToServer.writeBytes(messageToServer + ":" + '\n');
                 }
             }

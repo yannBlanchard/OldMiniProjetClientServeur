@@ -12,8 +12,10 @@ import java.awt.event.ActionListener;
 public class FenetreClient extends JFrame implements ActionListener{
     TextArea reception;
     TextArea message;
+    TextArea pseudo;
     String mes;
     JButton send;
+    JLabel label;
     String nomClient;
     Boolean firstCommit;
     ProdCons myPcEnvoie = null;
@@ -34,7 +36,7 @@ public class FenetreClient extends JFrame implements ActionListener{
 
 
         JFrame f = new JFrame();
-        f.setSize(500, 500);
+        f.setSize(500, 600);
         f.setTitle("Tchat (" + nomClient + ")");
         firstCommit = false;
 
@@ -42,13 +44,25 @@ public class FenetreClient extends JFrame implements ActionListener{
 
         f.setLayout(new FlowLayout());
 
-        reception = new TextArea(20,40);
-        message = new TextArea(10,40);
+        //reception = new TextArea(20,40);
+       // message = new TextArea(10,40);
+        label = new JLabel("Destinataire :");
+        pseudo = new TextArea();
+        reception = new TextArea();
+        message = new TextArea();
         send = new JButton("Envoyer");
 
         reception.setText("Syntaxe : \n NomDestinataire:Message\n");
 
         reception.setEditable(false);
+
+        label.setBounds(1, 1, 10, 20);
+        pseudo.setBounds(1, 1, 10, 20);
+        reception.setBounds(1, 10, 490, 400);
+        message.setBounds(1, 310, 490, 50);
+        send.setBounds(1,510,10,50);
+        f.add(label);
+        f.add(pseudo);
         f.add(reception);
         f.add(message);
 
@@ -73,7 +87,8 @@ public class FenetreClient extends JFrame implements ActionListener{
             //On affiche le message dans la zone de reception
             reception.setText(reception.getText() + nomClient + "  :\n" + message.getText() + "\n");
             //On construit le message
-            mes = ":D:" +nomClient +":" + message.getText();
+
+            mes = ":D:"+ nomClient +":"+ pseudo.getText() +":" + message.getText();
             myPcEnvoie.Put(mes);
             //On efface l'ecran
             message.setText(null);
