@@ -31,7 +31,7 @@ public class Reception extends Thread {
                 System.out.println("Attente de message");
                 messageRecu = inFromServer.readLine();
                 System.out.println("Message recu : " + messageRecu);
-                myPcRecept.Put(messageRecu);
+                myPcRecept.Put(messageRecu + "\n");
             }
             catch (Exception e){}
         }

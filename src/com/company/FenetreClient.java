@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
  * Created by Yann on 05/11/2015.
  */
 public class FenetreClient extends JFrame implements ActionListener{
+    JScrollPane scrollPane;
     TextArea reception;
     TextArea message;
     TextField pseudo;
@@ -52,13 +53,13 @@ public class FenetreClient extends JFrame implements ActionListener{
         //On bloque la modification de la reception
         reception.setEditable(false);
         //On ajoute une scroll bar a la fenetre de reception
-        JScrollPane scrollPane = new JScrollPane(reception);
+        scrollPane = new JScrollPane(reception);
         // On positionne les elements
         label.setBounds(1, 1, 99, 20);
         pseudo.setBounds(100, 1, 70, 30);
-        reception.setBounds(1, 40, 499, 400);
+        reception.setBounds(1, 50, 499, 350);
         message.setBounds(1, 450, 499, 70);
-        send.setBounds(200,520,100,25);
+        send.setBounds(200, 520, 100, 25);
         //Ajout des composant au panel
 
         f.add(label);

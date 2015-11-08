@@ -24,7 +24,8 @@ public class aServer extends Thread {
 			common.signalErreurToClient(out, "Destinataire Inconnu");
 		}
 		else{
-			versDest.println("Message de "+ this.nameClient +" \"" + mess + '"');
+			//versDest.println("Message de "+ this.nameClient +" \"" + mess + '"');
+			versDest.println(this.nameClient +" : \n"+ mess +'\n');
 		}
 	}
 

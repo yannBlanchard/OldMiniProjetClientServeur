@@ -41,8 +41,7 @@ public class Client extends Thread {
         while (true){
             System.out.println("ok");
             client.waitMessage();
-            //mess = client.getText();
-            //System.out.println(mess);
+
         }
     }
 
