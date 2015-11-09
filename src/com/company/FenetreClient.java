@@ -19,7 +19,10 @@ public class FenetreClient extends JFrame implements ActionListener{
     String nomClient;
     ProdCons myPcEnvoie = null;
     ProdCons myPcRecept = null;
-
+    TextField fieldPseudo;
+    JButton button;
+    JFrame f;
+    JFrame firstPage;
     public void waitMessage(){
         String messReception;
 
@@ -33,8 +36,26 @@ public class FenetreClient extends JFrame implements ActionListener{
         this.myPcEnvoie = prodConsEnv;
         this.myPcRecept = prodConsRec;
 
+        //Creation page d'accueil
+        firstPage = new JFrame();
+        firstPage.setSize(300, 300);
+        firstPage.setTitle("Pseudo");
+        firstPage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        firstPage.setLayout(null);
+        JLabel labelPseudo1 = new JLabel("Pseudo");
+        fieldPseudo = new TextField();
+        button = new JButton("Valider");
+        labelPseudo1.setBounds(50,50,50,50);
+        fieldPseudo.setBounds(110,70,100,20);
+        button.setBounds(100,90,100,25);
+        firstPage.add(labelPseudo1);
+        firstPage.add(fieldPseudo);
+        firstPage.add(button);
+        firstPage.setVisible(true);
+        button.addActionListener(this);
+
         //Creation de la frame
-        JFrame f = new JFrame();
+        f = new JFrame();
         f.setSize(520, 600);
         f.setTitle("Tchat (" + nomClient + ")");
         //Ajout de la croix pour fermer
@@ -67,7 +88,7 @@ public class FenetreClient extends JFrame implements ActionListener{
         f.add(send);
 
         //On affiche la frame
-        f.setVisible(true);
+        f.setVisible(false);
         //On active l'ecout d'evenements sur le bouton
         send.addActionListener(this);
 
@@ -82,17 +103,28 @@ public class FenetreClient extends JFrame implements ActionListener{
 
         if (label.equals("Envoyer"))
         {
-            //On affiche le message dans la zone de reception
-            reception.setText(reception.getText() + nomClient + "  :\n" + message.getText() + "\n\n");
-            //On construit le message
+            if(!message.getText().equals("") && !pseudo.getText().equals("")) {
+                //On affiche le message dans la zone de reception
+                reception.setText(reception.getText() + nomClient + "  :\n" + message.getText() + "\n\n");
+                //On construit le message
 
-            mes = ":D:"+ nomClient +":"+ pseudo.getText() +":" + message.getText();
-            myPcEnvoie.Put(mes);
-            //On efface l'ecran
-            message.setText(null);
-            //On remet le focus sur le champs de saisie
-            message.requestFocusInWindow();
-
+                mes = ":D:" + nomClient + ":" + pseudo.getText() + ":" + message.getText();
+                myPcEnvoie.Put(mes);
+                //On efface l'ecran
+                message.setText(null);
+                //On remet le focus sur le champs de saisie
+                message.requestFocusInWindow();
+            }
+        }
+        else if(label.equals("Valider")){
+            if(!fieldPseudo.getText().equals("")) {
+                mes = ":S:1:" + fieldPseudo.getText();
+                myPcEnvoie.Put(mes);
+                this.nomClient = fieldPseudo.getText();
+                f.setTitle("Tchat (" + this.nomClient + ")");
+                f.setVisible(true);
+                firstPage.setVisible(false);
+            }
         }
 
     }

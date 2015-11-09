@@ -24,11 +24,11 @@ public class Envoie extends Thread {
             try {
                 DataOutputStream outToServer = new DataOutputStream(socket.getOutputStream());
                 //Demande d'abo
-                outToServer.writeBytes(":S:1:"+ nom + ":" + '\n');
+               // outToServer.writeBytes(":S:1:"+ nom + ":" + '\n');
 
                 while (true){
                     messageToServer = (String) myPc.Get();
-
+                    System.out.println("Message to server : " + messageToServer);
                     outToServer.writeBytes(messageToServer + ":" + '\n');
                 }
             }
