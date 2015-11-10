@@ -15,6 +15,7 @@ public class FenetreClient extends JFrame implements ActionListener{
     TextField pseudo;
     String mes;
     JButton send;
+    JButton desa;
     JLabel label;
     String nomClient;
     ProdCons myPcEnvoie = null;
@@ -48,7 +49,7 @@ public class FenetreClient extends JFrame implements ActionListener{
         reception = new TextArea();
         message = new TextArea();
         send = new JButton("Envoyer");
-
+        desa = new JButton("Desabonnement");
         //On bloque la modification de la reception
         reception.setEditable(false);
 
@@ -58,6 +59,7 @@ public class FenetreClient extends JFrame implements ActionListener{
         reception.setBounds(1, 50, 499, 350);
         message.setBounds(1, 450, 499, 70);
         send.setBounds(200, 520, 100, 25);
+        desa.setBounds(400, 520, 100, 25);
         //Ajout des composant au panel
 
         f.add(label);
@@ -65,12 +67,12 @@ public class FenetreClient extends JFrame implements ActionListener{
         f.add(reception);
         f.add(message);
         f.add(send);
-
+        f.add(desa);
         //On affiche la frame
         f.setVisible(true);
         //On active l'ecout d'evenements sur le bouton
         send.addActionListener(this);
-
+        desa.addActionListener(this);
     }
 
 
@@ -82,17 +84,24 @@ public class FenetreClient extends JFrame implements ActionListener{
 
         if (label.equals("Envoyer"))
         {
-            //On affiche le message dans la zone de reception
-            reception.setText(reception.getText() + nomClient + "  :\n" + message.getText() + "\n\n");
-            //On construit le message
+            if(!message.getText().equals("") && !pseudo.getText().equals("")) {
+                //On affiche le message dans la zone de reception
+                reception.setText(reception.getText() + nomClient + "  :\n" + message.getText() + "\n\n");
+                //On construit le message
 
-            mes = ":D:"+ nomClient +":"+ pseudo.getText() +":" + message.getText();
+                mes = ":D:" + nomClient + ":" + pseudo.getText() + ":" + message.getText();
+                myPcEnvoie.Put(mes);
+                //On efface l'ecran
+                message.setText(null);
+                //On remet le focus sur le champs de saisie
+                message.requestFocusInWindow();
+            }
+            else{
+                reception.setText(reception.getText() + "Serveur :\n Le message ou le pseudo du destinataire est vide. \n\n");
+            }
+        }else if(label.equals("Desabonnement")){
+            mes = ":S:2:" + nomClient;
             myPcEnvoie.Put(mes);
-            //On efface l'ecran
-            message.setText(null);
-            //On remet le focus sur le champs de saisie
-            message.requestFocusInWindow();
-
         }
 
     }

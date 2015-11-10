@@ -20,6 +20,15 @@ public class Annuaire {
 			return 1;
 		}		
 	}
+
+	public int removeName(String name){
+		if (!tableClient.containsKey(name))
+			return 0;
+		else{
+			tableClient.remove(name);
+			return 1;
+		}
+	}
 	
 	public PrintWriter getPrintWriter(String name){
 		return tableClient.get(name);

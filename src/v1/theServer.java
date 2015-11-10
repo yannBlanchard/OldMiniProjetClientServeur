@@ -52,7 +52,8 @@ public class theServer extends Thread {
 
 				if (srec.startsWith(":S:1:")) {
 					traiteDemandeAbonnement(clientSocket, srec, clientSocketIn);
-				} else {
+				}
+				else {
 
 				}
 			}

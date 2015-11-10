@@ -29,6 +29,16 @@ public class aServer extends Thread {
 		}
 	}
 
+	private void traitementDesa(){
+		int res = 0;
+		if(annuaire.removeName(this.nameClient) == 1){
+			System.out.println("Suppression réussi de " +this.nameClient + "!");
+		}
+		else{
+			System.out.println("Erreur lors de la suppression.");
+		}
+	}
+
 	public aServer(String nameClient, BufferedReader socketClientIn, Annuaire annuaire) {
 		super();
 		this.nameClient = nameClient;
@@ -45,6 +55,10 @@ public class aServer extends Thread {
 				affTrace("Reçu : "+srec);
 				if (srec.startsWith(":D:")) {
 					traiteDemandeEmission(srec);
+				}
+				else if(srec.startsWith(":S:2:")){
+					traitementDesa();
+					System.out.println("Desabonnement");
 				}
 			} catch (IOException e) {
 				e.printStackTrace();
