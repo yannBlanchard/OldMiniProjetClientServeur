@@ -58,8 +58,8 @@ public class FenetreClient extends JFrame implements ActionListener{
         pseudo.setBounds(100, 1, 70, 30);
         reception.setBounds(1, 50, 499, 350);
         message.setBounds(1, 450, 499, 70);
-        send.setBounds(200, 520, 100, 25);
-        desa.setBounds(400, 520, 100, 25);
+        send.setBounds(100, 520, 100, 25);
+        desa.setBounds(300, 520, 150, 25);
         //Ajout des composant au panel
 
         f.add(label);
@@ -100,6 +100,7 @@ public class FenetreClient extends JFrame implements ActionListener{
                 reception.setText(reception.getText() + "Serveur :\n Le message ou le pseudo du destinataire est vide. \n\n");
             }
         }else if(label.equals("Desabonnement")){
+            reception.setText(reception.getText() + "Serveur :\n Suppression de votre pseudo de la liste. \n\n");
             mes = ":S:2:" + nomClient;
             myPcEnvoie.Put(mes);
         }
