@@ -94,6 +94,7 @@ public class FenetreClient extends JFrame implements ActionListener{
                 //On efface l'ecran
                 message.setText(null);
                 //On remet le focus sur le champs de saisie
+
                 message.requestFocusInWindow();
             }
             else{
