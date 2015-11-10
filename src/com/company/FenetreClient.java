@@ -99,7 +99,7 @@ public class FenetreClient extends JFrame implements ActionListener{
             else{
                 reception.setText(reception.getText() + "Serveur :\n Le message ou le pseudo du destinataire est vide. \n\n");
             }
-        }else if(label.equals("Desabonnement")){
+        }else if(label.equals("Desabonnement.")){
             reception.setText(reception.getText() + "Serveur :\n Suppression de votre pseudo de la liste. \n\n");
             mes = ":S:2:" + nomClient;
             myPcEnvoie.Put(mes);
